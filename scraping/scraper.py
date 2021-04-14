@@ -96,5 +96,5 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('scraped_df.csv', index = False)
+df.to_csv('scraped_df2.csv', index = False)
 
