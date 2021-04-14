@@ -30,7 +30,7 @@ def set_key(dictionary, key, value):
 df = {}
 
 
-#follow the pages scrapped
+#follow the pages scraped
 page = 0
 
 #number of posts scraped
@@ -74,7 +74,7 @@ while post_num < int(soup.find('strong', attrs = {"class" : "results-summary__co
              set_key(df, 'extra_contents', None)
             
         #post property rent
-        set_key(df, 'value', post.find('p', attrs = {"style" : "display: block;"}).text.split()[1])
+        set_key(df, 'rent', post.find('p', attrs = {"style" : "display: block;"}).text.split()[1])
         
         #post condominium fee
         if post.find('strong', attrs = {"class" : "js-condo-price"}):
@@ -85,13 +85,16 @@ while post_num < int(soup.find('strong', attrs = {"class" : "results-summary__co
         post_num += 1
                                             
     page += 1
-    print("page", page, "scrapped!")
+    print("page", page, "scraped!")
+    
+    #ckick on next page
     element = driver.find_element_by_partial_link_text('Próxima')
     driver.execute_script("arguments[0].click();", element)
     time.sleep(5)
 
+driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_excel('test_scrape.xlsx')
+df.to_csv('scraped_df.csv', index = False)
 
