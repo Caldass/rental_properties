@@ -2,6 +2,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
+import collections
 
 #beautiful soup and selenium objects
 
@@ -25,6 +26,14 @@ def set_key(dictionary, key, value):
      else:
          dictionary[key] = [dictionary[key], value]
 
+#made a second function for the extra_contents variable         
+def set_key2(dictionary, key, value):
+     if key in dictionary:
+         dictionary[key].append(value)
+     else:
+         dictionary[key]=[value]
+         
+         
 
 #dataframe with scraped data
 df = {}
@@ -69,9 +78,9 @@ while post_num < int(soup.find('strong', attrs = {"class" : "results-summary__co
         
         #get extra contents
         if post.find('ul', attrs = {"class" : "property-card__amenities"}):
-            set_key(df, 'extra_contents',[elem.text for elem in post.find('ul', attrs = {"class" : "property-card__amenities"}).find_all('li')])
+            set_key2(df, 'extra_contents',[elem.text for elem in post.find('ul', attrs = {"class" : "property-card__amenities"}).find_all('li')])
         else:
-             set_key(df, 'extra_contents', None)
+             set_key2(df, 'extra_contents', None)
             
         #post property rent
         set_key(df, 'rent', post.find('p', attrs = {"style" : "display: block;"}).text.split()[1])
@@ -83,7 +92,7 @@ while post_num < int(soup.find('strong', attrs = {"class" : "results-summary__co
             set_key(df, 'fee', None)
         
         post_num += 1
-                                            
+        
     page += 1
     print("page", page, "scraped!")
     
@@ -96,5 +105,4 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('scraped_df2.csv', index = False)
-
+df.to_csv('datasets_scraped/scraped_df2.csv', index = False)
