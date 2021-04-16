@@ -96,7 +96,7 @@ while post_num < int(soup.find('strong', attrs = {"class" : "results-summary__co
     page += 1
     print("page", page, "scraped!")
     
-    #ckick on next page
+    #click on next page
     element = driver.find_element_by_partial_link_text('Próxima')
     driver.execute_script("arguments[0].click();", element)
     time.sleep(5)
@@ -105,4 +105,4 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('datasets_scraped/scraped_df2.csv', index = False)
+df.to_csv('./scraping/datasets_scraped/scraped_df3.csv', index = False)
