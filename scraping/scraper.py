@@ -5,17 +5,15 @@ import time
 import collections
 
 #beautiful soup and selenium objects
-
 driver = webdriver.Chrome(executable_path='C:/Program Files/selenium/chromedriver.exe')
 
-url = 'https://www.vivareal.com.br/aluguel/pernambuco/recife/apartamento_residencial/'
+url = 'https://www.vivareal.com.br/aluguel/pernambuco/recife/casa_residencial/#tipos=casa_residencial,apartamento_residencial'
 
 driver.get(url)
 html = driver.page_source
 
 soup = BeautifulSoup(html, 'html.parser', from_encoding="utf-8")
 
-           
 #Code to insert into df the scraping information as dicts
 #Code found on https://stackoverflow.com/questions/41825868/update-python-dictionary-add-another-value-to-existing-key/41826126#41826126
 def set_key(dictionary, key, value):
@@ -33,11 +31,8 @@ def set_key2(dictionary, key, value):
      else:
          dictionary[key]=[value]
          
-         
-
 #dataframe with scraped data
 df = {}
-
 
 #follow the pages scraped
 page = 0
@@ -105,4 +100,4 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('./scraping/datasets_scraped/scraped_df3.csv', index = False)
+df.to_csv('./scraping/datasets_scraped/scraped_df5.csv', index = False)
