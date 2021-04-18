@@ -11,7 +11,6 @@ url = 'https://www.vivareal.com.br/aluguel/pernambuco/recife/casa_residencial/#t
 
 driver.get(url)
 html = driver.page_source
-
 soup = BeautifulSoup(html, 'html.parser', from_encoding="utf-8")
 
 #Code to insert into df the scraping information as dicts
@@ -100,4 +99,4 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('./scraping/datasets_scraped/scraped_df5.csv', index = False)
+df.to_csv('./scraping/datasets_scraped/scraped_df6.csv', index = False)
