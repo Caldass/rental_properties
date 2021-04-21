@@ -99,4 +99,4 @@ driver.quit()
     
 #making dict into dataframe
 df = pd.DataFrame.from_dict(df, orient = 'index').transpose()
-df.to_csv('./scraping/datasets_scraped/scraped_df7.csv', index = False)
+df.to_csv('./scraping/datasets_scraped/scraped_df8.csv', index = False)
