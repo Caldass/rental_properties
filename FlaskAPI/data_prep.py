@@ -10,15 +10,14 @@ from geopy.distance import geodesic
 class DataPrep(object):
      def __init__(self):
         #get coord list
-        with open('coord_list.csv', 'rb') as f:
-            reader = csv.reader(f)
-            coord_list = list(reader)
+        with open("coord_list.txt", "r") as file:
+        coord_list = eval(file.readline())
 
 
 
 
 
-    def data_preparation(self, df):
+    def pipeline(self, df):
             #cuntion that performs geocode
         def do_geocode(address, attempt=1, max_attempts=5):
             try:
