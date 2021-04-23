@@ -1,6 +1,7 @@
 import pandas as pd 
 import numpy as np
 import time
+import pickle
 from scipy.stats import randint
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
@@ -44,8 +45,10 @@ rf = RandomForestRegressor()
 
 parameters = {'n_estimators':randint(10,200), 'criterion':('mse','mae'), 'max_features':('auto','sqrt','log2')}
 
-rs = RandomizedSearchCV(rf,parameters,scoring='neg_mean_absolute_percentage_error',cv=3, n_iter = )
+rs = RandomizedSearchCV(rf,parameters,scoring='neg_mean_absolute_percentage_error',cv=3, n_iter = 150)
 start = time.time()
+
+#printing best fits and time elapsed
 rs.fit(X_train,y_train)
 print(rs.best_score_, rs.best_params_,  time.time() - start)
 
@@ -56,43 +59,17 @@ lr.fit(X_train,y_train)
 gb = GradientBoostingRegressor()
 gb.fit(X_train,y_train)
 
-
 # test models on unseen data 
 tpred_lr = lr.predict(X_test)
 tpred_rf = rs.best_estimator_.predict(X_test)
 tpred_gb = gb.predict(X_test)
 
-mean_absolute_percentage_error(y_test,tpred_lr)
-mean_absolute_percentage_error(y_test,tpred_rf)
-mean_absolute_percentage_error(y_test,tpred_gb)
+print(mean_absolute_percentage_error(y_test,tpred_lr))
+print(mean_absolute_percentage_error(y_test,tpred_rf))
+print(mean_absolute_percentage_error(y_test,tpred_gb))
 
-import pickle
-pickl = {'model': rs.best_estimator_}
-pickle.dump( pickl, open( 'model_file' + ".p", "wb" ) )
+#retraining final model on full data
+rf_tuned = rs.best_estimator_.fit(X, y)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#testing 
-#rf = XGBClassifier(eval_metric = 'error')
-#tpred_lgbm = lgbm.predict(X_test)
-
-#print("XGBoost score on unseen data : ",mean_absolute_percentage_error(y_test,tpred_xgb))
-
-
-
-
+#saving model
+pickle.dump(rf_tuned, open('./model_building/model_file.pkl', 'wb'))
