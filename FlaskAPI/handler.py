@@ -2,6 +2,7 @@ import pickle
 from flask import Flask, request
 import pandas as pd
 from data_prep import DataPrep
+import os
 
 #loading model
 model = pickle.load(open('../model_building/model_file.pkl', 'rb'))
@@ -33,5 +34,6 @@ def predict():
 
 if __name__ == '__main__':
     #start flask
-    app.run(host = 'localhost', port = '5000')
+    port = os.environ.get('PORT', 5000)
+    app.run(host = 'localhost', port = port)
 
