@@ -26,6 +26,11 @@ np.random.seed(101)
 X = df_dum.drop(columns = ['rent'], axis = 1)
 y = df_dum.rent.values
 
+#saving X columns to file to use it later on our api
+with open("./model_building/x_cols.txt", "w") as file:
+    file.write(str(list(X.columns)))
+
+
 #split into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
@@ -69,7 +74,7 @@ print(mean_absolute_percentage_error(y_test,tpred_rf))
 print(mean_absolute_percentage_error(y_test,tpred_gb))
 
 #retraining final model on full data
-rf_tuned = rs.best_estimator_.fit(X, y)
+rs.best_estimator_.fit(X, y)
 
 #saving model
-pickle.dump(rf_tuned, open('./model_building/model_file.pkl', 'wb'))
+pickle.dump(rs, open('./model_building/model_file.pkl', 'wb'))

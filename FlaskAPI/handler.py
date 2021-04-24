@@ -1,6 +1,7 @@
 import pickle
 from flask import Flask, request
 import pandas as pd
+from data_prep import DataPrep
 
 #loading model
 model = pickle.load(open('../model_building/model_file.pkl', 'rb'))
@@ -19,12 +20,16 @@ def predict():
             df_raw = pd.DataFrame(test_json, index = [0])
         else:
             df_raw = pd.DataFrame(test_json, columns = test_json[0].keys())
+    
+    #instanciate pipeline
+    pipe = DataPrep()
+    df1 = pipe.pipeline(df_raw)
 
     #prediction
-    pred = model.predict(df_raw)
-    df_raw['prediction'] = pred
+    pred = model.predict(df1)
+    df1['prediction'] = pred
 
-    return df_raw.to_json(orient = 'records')
+    return df1.to_json(orient = 'records')
 
 if __name__ == '__main__':
     #start flask

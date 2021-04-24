@@ -1,24 +1,23 @@
 import pandas as pd
+import numpy as np
 import pickle
 from geopy.extra.rate_limiter import RateLimiter
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 from geopy.distance import geodesic
 
-
-
 class DataPrep(object):
-     def __init__(self):
+    def __init__(self):
         #get coord list
-        with open("coord_list.txt", "r") as file:
-        coord_list = eval(file.readline())
+        with open("../data_cleaning/coord_list.txt", "r") as file:
+            self.coord_list = eval(file.readline())
 
-
-
+        with open("../model_building/x_cols.txt", "r") as file:
+            self.x_cols = eval(file.readline())
 
 
     def pipeline(self, df):
-            #cuntion that performs geocode
+        #function that performs geocode
         def do_geocode(address, attempt=1, max_attempts=5):
             try:
                 return locator.geocode(address, addressdetails=True)
@@ -37,7 +36,7 @@ class DataPrep(object):
 
         #original code found on https://towardsdatascience.com/dealing-with-list-values-in-pandas-dataframes-a177e534f173
         def to_1D(series):
-        return pd.Series([x for _list in series for x in _list])
+            return pd.Series([x for _list in series for x in _list])
 
         def boolean_df(item_lists, unique_items):
         # Create empty dict
@@ -55,17 +54,20 @@ class DataPrep(object):
         #get distance of propertie to the beach
         def get_distance(x):
             values = []
-            for i in coord_list:
+            for i in self.coord_list:
                 values.append(geodesic(x, i).km)
             return min(values)
+
+        #changing names from Brazilian Portuguese to English
+        df.replace({'property_type' : { 'apartamento' : 'apartment', 'casa' : 'house'}}, inplace = True)
 
         #creating geopy objects
         locator = Nominatim(user_agent = 'myGeocoder')
         geocode = RateLimiter(locator.geocode, min_delay_seconds=1)
-        
+
         #getting location column
         df['location'] = df['address'].apply(lambda x: do_geocode(x))
-        
+
         #removing not found locations
         df = df[df.location.notna()]
 
@@ -77,10 +79,13 @@ class DataPrep(object):
         df['point'] = df['location'].apply(lambda loc: tuple(loc.point) if loc else None)
 
         #dropping unnecessary columns
-        df.drop(columns = ['location', 'title', 'address'], inplace = True)
+        df.drop(columns = ['location', 'address'], inplace = True)
 
         #filtering only Recife
         df = df[df.city == 'Recife']
+        
+        #doing eval
+        df["extra_contents"] = df["extra_contents"].apply(eval)
 
         #now we won't need the city column anymore, so we'll remove it
         df.drop(columns = ['city'], inplace = True)
@@ -92,17 +97,21 @@ class DataPrep(object):
         df = pd.concat([df, extra_contents_df], axis=1)
         df.drop(columns = ['extra_contents'], inplace = True)
 
-        #summing fee and rent column
-        df['rent'] = df['rent'] + df['fee']
-        df.drop(columns = ['fee'], inplace = True)
-
-        #naming original columns of our dataframe except for rent
+        #naming original columns of our dataframe
         selected_columns = ['property_type', 'area', 'bathrooms', 'bedrooms', 'parking_spots', 'neighborhood','point', 'Mais de um andar',
         'Mobiliado', 'Churrasqueira', 'Cozinha', 'Piscina']
+        
+        #adding main 4 extra columns if they were not in the original df
+        for col in selected_columns:
+            if col not in df.columns:
+                df[col] = 0
+
+        #filtering columns
+        df = df[selected_columns]
 
         #renaming columns
         df.columns = ['property_type', 'area', 'bathrooms', 'bedrooms', 'parking_spots',
-        'neighborhood', 'point', 'rent', 'more_than_1_floor', 'furnished',
+        'neighborhood', 'point', 'more_than_1_floor', 'furnished',
         'barbecue_grill', 'kitchen', 'pool']
 
         #get beach distance
@@ -111,10 +120,24 @@ class DataPrep(object):
         #getting latitude and longitude columns for visualization and dropping unnecessary columns
         df[['latitude', 'longitude', 'altitude']] = pd.DataFrame(df['point'].tolist(), index=df.index)
         df.drop(columns = ['altitude', 'point'], inplace = True)
+
+        #getting dummy columns
+        df1 = df.copy()
+        df = pd.get_dummies(df1)
+        
+        #loop to fill not used dummy columns
+        for col in self.x_cols:
+            if col not in df.columns:
+                df[col] = 0
+        
+        #ordering columns just like the model
+        df = df[self.x_cols]
+
+        #transforming area using np log as explained in the eda
+        df['area'] = np.log(df.area)
+
+
         return df 
-
-
-
 
 
 
