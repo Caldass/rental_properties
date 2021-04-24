@@ -1,11 +1,11 @@
 import pickle
 from flask import Flask, request
 import pandas as pd
-from data_prep import DataPrep
+from FlaskAPI.data_prep import DataPrep
 import os
 
 #loading model
-model = pickle.load(open('../model_building/model_file.pkl', 'rb'))
+model = pickle.load(open('./model_building/model_file.pkl', 'rb'))
 
 #instanciate flask
 app = Flask(__name__)
