@@ -9,10 +9,10 @@ from geopy.distance import geodesic
 class DataPrep(object):
     def __init__(self):
         #get coord list
-        with open("./parameters/coord_list.txt", "r") as file:
+        with open("../parameters/coord_list.txt", "r") as file:
             self.coord_list = eval(file.readline())
 
-        with open("./parameters/x_cols.txt", "r") as file:
+        with open("../parameters/x_cols.txt", "r") as file:
             self.x_cols = eval(file.readline())
 
 
