@@ -13,7 +13,7 @@ class DataPrep(object):
             self.coord_list = eval(file.readline())
 
         with open("./parameters/x_cols.txt", "r") as file:
-            self.x_cols = eval(file.readline())
+            self.x_cols = eval(file.readline()).decode("utf-8")
 
 
     def pipeline(self, df):
