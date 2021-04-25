@@ -5,7 +5,7 @@ from data_prep.data_prep import DataPrep
 import os
 
 #loading model
-model = pickle.load(open('model/model_file.pkl', 'rb'))
+model = pickle.load(open('./model/model_file.pkl', 'rb'))
 
 #instanciate flask
 app = Flask(__name__)
