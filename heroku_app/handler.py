@@ -34,6 +34,6 @@ def predict():
 
 if __name__ == '__main__':
     #start flask
-    port = os.environ.get('PORT', 3000)
+    port = os.environ.get('PORT', 25858)
     app.run(host = 'localhost', port = port)
 
