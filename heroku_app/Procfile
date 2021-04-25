@@ -1,1 +1,1 @@
-web: python handler.py -p $PORT
+web: python handler.py
