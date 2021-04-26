@@ -1,5 +1,4 @@
 import pandas as pd 
-import csv
 import numpy as np
 import time
 import pickle
@@ -27,15 +26,11 @@ np.random.seed(101)
 X = df_dum.drop(columns = ['rent'], axis = 1)
 y = df_dum.rent.values
 
+#soting columns from X
 x_cols = list(X.columns)
 
-#saving X columns to file to use it later on our api
-#with open("./heroku_app/parameters/x_cols.txt", "w") as file:
-#    file.write(x_cols)
-
+#dumping columns to file for API
 pickle.dump(x_cols, open('./heroku_app/parameters/x_cols.pkl', 'wb'))
-
-
 
 #split into train and test
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
@@ -49,7 +44,7 @@ names = ['Linear Regression', 'Lasso Regression', 'Random Forest', 'Gradient Boo
 for model, name in zip(models, names):
     start = time.time()
     scores = cross_val_score(model, X_train, y_train ,scoring= 'neg_mean_absolute_percentage_error', cv=5)
-    print(name, ":", "%0.2f, +- %0.2f" % (scores.mean(), scores.std()), " - Elapsed time: ", time.time() - start)
+    print(name, ":", "%0.3f, +- %0.3f" % (scores.mean(), scores.std()), " - Elapsed time: ", time.time() - start)
 
 #tuning random forest
 rf = RandomForestRegressor()
