@@ -8,7 +8,9 @@
 
 ## Code and Resources Used
 **Python version**: 3.7
+
 **Packages**: Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium.
+
 **Flask and Heroku productionization**: [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product. 
 
 ## Web Scraping
@@ -56,7 +58,11 @@ In this step we managed to:
 - Normalize rent and area column using log.
 
 Here are some highlights of the data exploration:
-
+![alt text](https://github.com/Caldass/rental_properties/images/cmap.png "Correlation Heatmap")
+![alt text](https://github.com/Caldass/rental_properties/images/map.png "Recife Map")
+![alt text](https://github.com/Caldass/rental_properties/images/median-rent.png "Median rent by neighborhood")
+![alt text](https://github.com/Caldass/rental_properties/images/rent-distribution.png "Rent distribution")
+![alt text](https://github.com/Caldass/rental_properties/images/recife_map.html "Recife Map")
 
 
 ## Model Building
