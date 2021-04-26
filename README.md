@@ -4,13 +4,10 @@
 - Engineered features like latitude, longitude and beach distance using Geopy and Geopandas and also extracted extra contents about the property in order to help quantify the rent.
 - Built models and optimized Random Forest Regressor in order to reach the best model to predict rent.
 - Productionized the model using Flask and Heroku.
-
-
+- 
 ## Code and Resources Used
 **Python version**: 3.7
-
 **Packages**: Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium.
-
 **Flask and Heroku productionization**: [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product. 
 
 ## Web Scraping
@@ -48,8 +45,6 @@ Created new features using Geopy, Geopandas and extra_contents and also modifyed
 - **latitude**
 - **longitude**
 
-
-
 ## EDA
 In this step we managed to:
 - Find some irregularities in our data through data visualization that we couldn't find in the Data Cleaning step.
@@ -62,8 +57,6 @@ Here are some highlights of the data exploration:
 ![alt text](https://github.com/Caldass/rental_properties/blob/main/images/map.png "Recife Map")
 ![alt text](https://github.com/Caldass/rental_properties/blob/main/images/median-rent.png "Median rent by neighborhood")
 ![alt text](https://github.com/Caldass/rental_properties/blob/main/images/rent-distribution.png "Rent distribution")
-![alt text](https://github.com/Caldass/rental_properties/blob/main/images/recife_map.html "Recife Map")
-
 
 ## Model Building
 
@@ -73,7 +66,6 @@ In this step I removed the latitude and longitude columns to avoid correlation b
 -  Gradient Boost Regressor - Just like Random Forest, a tree based ensemble model expected to work well due to the sparsity of the data.
 
 To evaluate the model I chose the Mean Absolute Percentage Error (MAPE), since it's a metric that's not affected that much by outliers and it's easy to interpret. Basically it says how off our predictions were on average.
-
 
 ### Model Results
 Linear Regression had terrible results as expected due to the number of features after dummy encoding, an issue Lasso Regression did not went through. Random Forest beat the other models so it was the chosen model to be tuned. Here are the results:
