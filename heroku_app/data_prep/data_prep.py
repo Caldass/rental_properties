@@ -12,9 +12,8 @@ class DataPrep(object):
         with open("./parameters/coord_list.txt", "r") as file:
             self.coord_list = eval(file.readline())
 
-        with open("./parameters/x_cols.txt", "r") as file:
-            self.x_cols = eval(file.readline()).encode("utf-8")
-
+        with open("./parameters/x_cols.txt", "r", encoding= 'utf-8') as file:
+            self.x_cols = eval(file.readline())
 
     def pipeline(self, df):
         #function that performs geocode
