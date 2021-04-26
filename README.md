@@ -5,13 +5,10 @@
 - Built models and optimized Random Forest Regressor in order to reach the best model to predict rent.
 - Productionized the model using Flask and Heroku.
 
-
 ## Code and Resources Used
-**Python version**: 3.7
-
-**Packages**: Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium.
-
-**Flask and Heroku productionization**: [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product. 
+**Python version:** 3.7 <br />
+**Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium <br />
+**Flask and Heroku productionization:** [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product
 
 ## Web Scraping
 Used BeautifulSoup and Selenium to scrape over 4000 posts on Recife's rental properties from https://www.vivareal.com.br/. The data was scrapped between the 12th and the 20th of April 2021. For each post the following data was retrieved:
@@ -48,8 +45,6 @@ Created new features using Geopy, Geopandas and extra_contents and also modifyed
 - **latitude**
 - **longitude**
 
-
-
 ## EDA
 In this step we managed to:
 - Find some irregularities in our data through data visualization that we couldn't find in the Data Cleaning step.
@@ -58,22 +53,19 @@ In this step we managed to:
 - Normalize rent and area column using log.
 
 Here are some highlights of the data exploration:
-![alt text](https://github.com/Caldass/rental_properties/images/cmap.png "Correlation Heatmap")
-![alt text](https://github.com/Caldass/rental_properties/images/map.png "Recife Map")
-![alt text](https://github.com/Caldass/rental_properties/images/median-rent.png "Median rent by neighborhood")
-![alt text](https://github.com/Caldass/rental_properties/images/rent-distribution.png "Rent distribution")
-![alt text](https://github.com/Caldass/rental_properties/images/recife_map.html "Recife Map")
-
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/cmap.png "Correlation Heatmap")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/map.png "Recife Map")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/median-rent.png "Median rent by neighborhood")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/rent-distribution.png "Rent distribution")
 
 ## Model Building
 
 In this step I removed the latitude and longitude columns to avoid correlation between independent variables and split the data between training and test set with a test size of 20%. Here are the models used:
-- Multiple Linear Regression and Lasso Regression - Baselines for the model. Linear Regresssion was expected to have bad results  due to the number of features and sparsity in the data, that's why we used a regularized regression model like Lasso.
-- Random Forest Regressor - Tree based ensemble model expected to work well due to the sparsity of the data.
--  Gradient Boost Regressor - Just like Random Forest, a tree based ensemble model expected to work well due to the sparsity of the data.
+- **Multiple Linear Regression and Lasso Regression** - Baselines for the model. Linear Regresssion was expected to have bad results  due to the number of features and sparsity in the data, that's why we used a regularized regression model like Lasso.
+- **Random Forest Regressor** - Tree based ensemble model expected to work well due to the sparsity of the data.
+-  **Gradient Boost Regressor** - Just like Random Forest, a tree based ensemble model expected to work well due to the sparsity of the data.
 
 To evaluate the model I chose the Mean Absolute Percentage Error (MAPE), since it's a metric that's not affected that much by outliers and it's easy to interpret. Basically it says how off our predictions were on average.
-
 
 ### Model Results
 Linear Regression had terrible results as expected due to the number of features after dummy encoding, an issue Lasso Regression did not went through. Random Forest beat the other models so it was the chosen model to be tuned. Here are the results:
