@@ -7,8 +7,8 @@
 - 
 ## Code and Resources Used
 **Python version:** 3.7
-**Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium.
-**Flask and Heroku productionization:** [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product. 
+**Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium
+**Flask and Heroku productionization:** [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product
 
 ## Web Scraping
 Used BeautifulSoup and Selenium to scrape over 4000 posts on Recife's rental properties from https://www.vivareal.com.br/. The data was scrapped between the 12th and the 20th of April 2021. For each post the following data was retrieved:
