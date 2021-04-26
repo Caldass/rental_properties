@@ -6,8 +6,8 @@
 - Productionized the model using Flask and Heroku.
 
 ## Code and Resources Used
-**Python version:** 3.7__
-**Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium__
+**Python version:** 3.7 <br />
+**Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium <br />
 **Flask and Heroku productionization:** [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the final product
 
 ## Web Scraping
