@@ -1,4 +1,5 @@
 import pandas as pd 
+import csv
 import numpy as np
 import time
 import pickle
@@ -26,9 +27,14 @@ np.random.seed(101)
 X = df_dum.drop(columns = ['rent'], axis = 1)
 y = df_dum.rent.values
 
+x_cols = list(X.columns)
+
 #saving X columns to file to use it later on our api
-with open("./model_building/x_cols.txt", "w") as file:
-    file.write(str(list(X.columns)))
+#with open("./heroku_app/parameters/x_cols.txt", "w") as file:
+#    file.write(x_cols)
+
+pickle.dump(x_cols, open('./heroku_app/parameters/x_cols.pkl', 'wb'))
+
 
 
 #split into train and test
@@ -48,9 +54,9 @@ for model, name in zip(models, names):
 #tuning random forest
 rf = RandomForestRegressor()
 
-parameters = {'n_estimators':randint(10,200), 'criterion':('mse','mae'), 'max_features':('auto','sqrt','log2')}
+parameters = {'n_estimators':randint(10,300), 'criterion':('mse','mae'), 'max_features':('auto','sqrt','log2')}
 
-rs = RandomizedSearchCV(rf,parameters,scoring='neg_mean_absolute_percentage_error',cv=3, n_iter = 150)
+rs = RandomizedSearchCV(rf,parameters,scoring='neg_mean_absolute_percentage_error',cv=3, n_iter = 250)
 start = time.time()
 
 #printing best fits and time elapsed
@@ -77,4 +83,4 @@ print(mean_absolute_percentage_error(y_test,tpred_gb))
 rs.best_estimator_.fit(X, y)
 
 #saving model
-pickle.dump(rs, open('./model_building/model_file.pkl', 'wb'))
+pickle.dump(rs, open('./heroku_app/model/model_file.pkl', 'wb'))
