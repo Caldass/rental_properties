@@ -58,11 +58,11 @@ In this step we managed to:
 - Normalize rent and area column using log.
 
 Here are some highlights of the data exploration:
-![alt text](https://github.com/Caldass/rental_properties/images/cmap.png "Correlation Heatmap")
-![alt text](https://github.com/Caldass/rental_properties/images/map.png "Recife Map")
-![alt text](https://github.com/Caldass/rental_properties/images/median-rent.png "Median rent by neighborhood")
-![alt text](https://github.com/Caldass/rental_properties/images/rent-distribution.png "Rent distribution")
-![alt text](https://github.com/Caldass/rental_properties/images/recife_map.html "Recife Map")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/cmap.png "Correlation Heatmap")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/map.png "Recife Map")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/median-rent.png "Median rent by neighborhood")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/rent-distribution.png "Rent distribution")
+![alt text](https://github.com/Caldass/rental_properties/blob/main/images/recife_map.html "Recife Map")
 
 
 ## Model Building
