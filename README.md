@@ -4,7 +4,7 @@
 - Engineered features like latitude, longitude and beach distance using Geopy and Geopandas and also extracted extra contents about the property in order to help quantify the rent.
 - Built models and optimized Random Forest Regressor in order to reach the best model to predict rent.
 - Productionized the model using Flask and Heroku.
-- 
+
 ## Code and Resources Used
 **Python version:** 3.7
 **Packages:** Pandas, Numpy, Geopy, Geopandas, Flask, Sklearn, Pickle, Plotly, Matplotlib, Folium, BeatifulSoup, Selenium
