@@ -11,8 +11,8 @@ class DataPrep(object):
         #get coord list
         with open("./parameters/coord_list.txt", "r") as file:
             self.coord_list = eval(file.readline())
-        #test
-        with open("./parameters/x_cols.txt", "r", encoding= 'utf-8') as file:
+            
+        with open("./parameters/x_cols.txt", "r") as file:
             self.x_cols = eval(file.readline())
 
     def pipeline(self, df):
