@@ -1,9 +1,9 @@
 # Recife's Properties Rent Estimator - Project Overview
-- Deployed tool that estimates the rent of a property in the city of Recife (Brazil) (MAPE ~ 2.2%) to help people negotiate and evaluate rent prices.
-- Scraped over 4000 properties data from https://www.vivareal.com.br/ using BeatifulSoup and Selenium.
-- Engineered features like latitude, longitude and beach distance using Geopy and Geopandas and also extracted extra contents about the property in order to help quantify the rent.
-- Built models and optimized Random Forest Regressor in order to reach the best model to predict rent.
-- Productionized the model using Flask and Heroku.
+* Deployed tool that estimates the rent of a property in the city of Recife (Brazil) (MAPE ~ 2.2%) to help people negotiate and evaluate rent prices.
+* Scraped over 4000 properties data from https://www.vivareal.com.br/ using BeatifulSoup and Selenium.
+* Engineered features like latitude, longitude and beach distance using Geopy and Geopandas and also extracted extra contents about the property in order to help quantify the rent.
+* Built models and optimized Random Forest Regressor in order to reach the best model to predict rent.
+* Productionized the model using Flask and Heroku.
 
 ## Code and Resources Used
 **Python version:** 3.7
