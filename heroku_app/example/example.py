@@ -11,7 +11,7 @@ headers = {'Content-type': 'application/json'}
 
 #input example
 input_df = pd.DataFrame({'property_type': ['apartamento'], 'address' : ['Avenida Boa Viagem, 5822 - Boa Viagem, Recife - PE'], 'area' : [160], 'bathrooms': [5],
-                  'bedrooms' : [4], 'parking_spots' : [3], 'extra_contents' : ["['Mais de um andar', 'Mobiliado', 'Churrasqueira', 'Cozinha', 'Piscina']"]})
+                  'bedrooms' : [4], 'bathrooms' : [2] , 'parking_spots' : [3], 'extra_contents' : ["['Mais de um andar', 'Mobiliado', 'Churrasqueira', 'Cozinha', 'Piscina']"]})
 
 #transform df into json format
 df_json = input_df.to_json(orient = 'records')
@@ -23,4 +23,4 @@ r = requests.post( url = url , data = df_json, headers =headers)
 output = pd.DataFrame(r.json(), columns = r.json()[0].keys())
 
 #Print result
-print('Property rent is R$ %.2f' % np.exp(output.prediction)[0])
+print('Property rent is R$ %.2f' % output.prediction[0])

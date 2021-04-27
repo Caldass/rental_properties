@@ -1,4 +1,5 @@
 import pickle
+import numpy as np
 from flask import Flask, request
 import pandas as pd
 from data_prep.data_prep import DataPrep
@@ -28,7 +29,7 @@ def predict():
 
     #prediction
     pred = model.predict(df1)
-    df1['prediction'] = pred
+    df1['prediction'] = np.exp(pred)
 
     return df1.to_json(orient = 'records')
 

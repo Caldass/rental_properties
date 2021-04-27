@@ -81,10 +81,13 @@ In this step I built a Flask API endpoint which I deployed to a Heroku applicati
 - **address** - _'Avenida Boa Viagem, 5822 - Boa Viagem, Recife - PE'_ (street name, number - neighborhood, Recife - PE).
 - **area** - 160 (integer number that represents area).
 - **bedrooms** - 4 (integer number that represents bedrooms).
+- **bathrooms** - 3 (integer number that represents bathrooms).
 - **parking_spots** - 3 (integer number that represents parking spots).
 - **extra_contents** - _"['Mais de um andar', 'Mobiliado', 'Churrasqueira', 'Cozinha', 'Piscina']"_ (More than one floor, Furnished, Barbecue grill, Kitchen, Pool).
 
 The **property_type** and the **extra_contents** inputs are in Portuguese since this project is aimed at the residents of Recife but written in English so that it could be helpful and accessible to anyone. The extra contents options available are those displayed in the previous example.
 
-Under _heroku_app/example/example.py_ there's input example to help the understanding of the request.
+The output of the request is a Data Frame containing a "prediction" column with the rent predicted value.
+
+Under _heroku_app/example/example.py_ there's input example to help the understanding of the request and its output.
 
