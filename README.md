@@ -11,7 +11,7 @@
 **Flask and Heroku productionization:** [Meigarom's Youtube videos](https://www.youtube.com/channel/UCar5Cr-pVz08GY_6I3RX9bA) on the theme really helped building the web framework.
 
 ## Web Scraping
-Used BeautifulSoup and Selenium to scrape over 4000 unique posts on Recife's rental properties from https://www.vivareal.com.br/. The data was scraped between the 12th and the 20th of April 2021. For each post the following data was retrieved:
+Used BeautifulSoup and Selenium to scrape over 4000 unique posts on Recife's rental properties from https://www.vivareal.com.br/. The data was scraped between the 12th and the 20th of April 2021. I also filtered posts for houses and apartments only in order to avoid commercial properties. For each post the following data was retrieved:
 
 - **title** - Property's description.
 - **address** - Property's address.
